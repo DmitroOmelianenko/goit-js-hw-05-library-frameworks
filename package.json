@@ -1,0 +1,24 @@
+{
+  "name": "goit-js-hw-05-library-frameworks",
+  "version": "1.0.0",
+  "description": "homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitroOmelianenko/goit-js-hw-05-library-frameworks.git"
+  },
+  "keywords": [
+    "homework",
+    "IT",
+    "GoIteens"
+  ],
+  "author": "Dmitro Omelianenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitroOmelianenko/goit-js-hw-05-library-frameworks/issues"
+  },
+  "homepage": "https://github.com/DmitroOmelianenko/goit-js-hw-05-library-frameworks#readme"
+}

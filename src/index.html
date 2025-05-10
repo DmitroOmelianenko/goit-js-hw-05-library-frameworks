@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Натисни правильну клавішу</title>
+  <link href="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/BrightTheme.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #key {
+      font-size: 48px;
+      color: blue;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+    #sales-chart {
+      max-width: 800px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Натисни правильну клавішу</h1>
+  <p>Натисни клавішу:</p>
+  <div id="key">?</div>
+  <button id="newGame">Нова гра</button>
+
+
+  <!-- PNotify -->
+  <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotifyMobile.js"></script>
+
+  <script>
+    // Логіка гри
+    const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';'];
+    let currentKeyIndex = 0;
+
+    const keyDisplay = document.getElementById('key');
+    const newGameButton = document.getElementById('newGame');
+
+    function getRandomKey() {
+      return keys[Math.floor(Math.random() * keys.length)];
+    }
+
+    function startNewGame() {
+      currentKeyIndex = 0;
+      currentKey = getRandomKey();
+      keyDisplay.textContent = currentKey;
+      PNotify.success({
+        text: 'Гру розпочато! Натисніть правильну клавішу.',
+        delay: 1500
+      });
+    }
+
+    let currentKey = getRandomKey();
+    keyDisplay.textContent = currentKey;
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === currentKey) {
+        currentKey = getRandomKey();
+        keyDisplay.textContent = currentKey;
+        PNotify.success({
+          text: 'Правильно!',
+          delay: 1000
+        });
+      } else {
+        PNotify.error({
+          text: `Помилка! Ви натиснули "${event.key}", а треба "${currentKey}".`,
+          delay: 2000
+        });
+      }
+    });
+
+    document.addEventListener('keypress', (event) => {
+      event.preventDefault(); // Запобігає дії за замовчуванням
+    });
+
+    newGameButton.addEventListener('click', startNewGame);
+
+    
+  </script>
+</body>
+</html>
