@@ -17,9 +17,17 @@ jobs:
           npm ci
           npm run build
 
+      - name: Check dist folder exists
+        run: ls -la dist
+
+      - name: Configure Git 🛠
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages      # Гілка для деплою
-          folder: dist          # Папка з побудованим сайтом
-          token: ${{ secrets.GITHUB_TOKEN }} # Авторизація
+          branch: gh-pages
+          folder: dist
+          token: ${{ secrets.GITHUB_TOKEN }}
